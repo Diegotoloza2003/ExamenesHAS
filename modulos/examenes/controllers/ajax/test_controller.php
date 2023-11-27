@@ -8,7 +8,7 @@
  	require_once('../../../../models/Evaluation.php');
  	require_once('../../models/Test.php');
  
- 	$test = new Test(); 	
+ 	$test = new Test();
 
 	if(isset($_POST["request"])){
 	
@@ -140,25 +140,18 @@
 
 					$arrayCargos = $_POST["cargos_select"];
 
-					print_r($_POST);
-
-					if (isset($arrayCargos) && is_array($arrayCargos)) {
-						print_r($arrayCargos);
-					} else {
-						// print_r($arrayCargos);
-						echo 'No se seleccionaron cargos.';
-					}
-
 					$update = $test -> set_test_config($hourAp,
 													   $dateAp,
 													   $hourEx,
 													   $dateEx,
 													   $promMin,
-													   $arrayCargos,
 												       $idTest);//actualizar configuracion
-													   
-					// guardar relacion intermedia
-					//$cargos_response = $test->set_cargos_test_config($arrayCargos,$idTest);
+
+					// Solo si es array pase
+					if (isset($arrayCargos) && is_array($arrayCargos)) {
+						// guardar relacion intermedia
+						$cargos_response = $test->set_cargos_test_config($arrayCargos, $idTest);
+					}
 
 					$data = $test -> status_query($update["status"], $update["notice"], $update["data"]); 			
 					
