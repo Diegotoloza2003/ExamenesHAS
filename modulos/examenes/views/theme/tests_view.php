@@ -176,7 +176,7 @@
                                 <div class="form-group">
                                     <label for="cargos_select" class="col-form-label">Asignar a:</label>
                                     <br>
-                                    <select class="form-control data-config" id="cargos_select" style="width: 100%;" name="cargos_select[]" multiple="multiple">
+                                    <select class="form-control data-config" id="cargos_select" style="width: 100%;" name="cargos_select[]" multiple="multiple"  tabindex="6">
                                         <option value="">Seleccione los cargos</option>
                                         <?php
                                             // obtener_datos.php
