@@ -12,10 +12,18 @@
         ?>
 
         <link rel="stylesheet" type="text/css" href="views/theme/css/datatables.min.css">
-
         <link rel="stylesheet" type="text/css" href="modulos/examenes/views/theme/css/test.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     
+        <style>
+            .select2-close-mask{
+                z-index: 2099 !important;
+            }
+            .select2-dropdown{
+                z-index: 3051 !important;
+            }
+        </style>
 
     </head>
     <body>
@@ -31,7 +39,7 @@
             
                 <section class="content">
 
-                     <div class="breadcrumb-wrap">
+                    <div class="breadcrumb-wrap">
                         <nav aria-label="breadcrumb" class="col-12 col-sm-6 breadcrumb">
                           <ol class="breadcrumb">
                             <li class="breadcrumb-item" aria-current="page"><a href="admin.php">Home</a></li>
@@ -68,8 +76,7 @@
                                 <div class="search-formWrap col-12 col-sm-6">
                                     <div class="col">
                                         <form class="search-form float-right" id="search-form">
-                                            <div class="dataTables_filter input-group" id="admin-table_filter">
-                                            </div>
+                                            <div class="dataTables_filter input-group" id="admin-table_filter"></div>
                                         </form>
                                     </div>
                                 </div>
@@ -164,37 +171,39 @@
                                     <label for="prom-min" class="col-form-label">Promedio minimo:</label>
                                     <input type="number" class="form-control data-config" id="prom-min" tabindex="5">
                                 </div>
-                            <div class="col-12 col-sm-6" method="post">
+                            </div>
+                            <div class="col-12 col-sm-6">
                                 <div class="form-group">
-                                <label>Asignar a </label>
-                                <br>
+                                    <label for="cargos_select" class="col-form-label">Asignar a:</label>
+                                    <br>
+                                    <select class="form-control data-config" id="cargos_select" style="width: 100%;" name="cargos_select[]" multiple="multiple">
+                                        <option value="">Seleccione los cargos</option>
+                                        <?php
+                                            // obtener_datos.php
+                                            // Conectarse a la base de datos y ejecutar una consulta para obtener datos
 
-                                <?php
-// obtener_datos.php
-// Conectarse a la base de datos y ejecutar una consulta para obtener datos
+                                            $conexion = new mysqli('mysql5026.site4now.net', 'aa194e_examen', 'Holaquehace123', 'db_aa194e_examen');
 
-$conexion = new mysqli('mysql5026.site4now.net', 'aa194e_examen', 'Holaquehace123', 'db_aa194e_examen');
+                                            if ($conexion->connect_error) {
+                                                die('Error de conexión a la base de datos: ' . $conexion->connect_error);
+                                            }
 
-if ($conexion->connect_error) {
-    die('Error de conexión a la base de datos: ' . $conexion->connect_error);
-}
+                                            $consulta = "SELECT id, name FROM cargos";
+                                            $resultado = $conexion->query($consulta);
 
-$consulta = "SELECT id, name FROM cargos";
-$resultado = $conexion->query($consulta);
+                                            if ($resultado->num_rows > 0) {
+                                                while ($fila = $resultado->fetch_assoc()) {
+                                                    echo '<option value="' . $fila['id'] . '">' . $fila['name'] . '</option>';
+                                                }
+                                            } else {
+                                                echo 'No se encontraron datos.';
+                                            }
 
-if ($resultado->num_rows > 0) {
-    while ($fila = $resultado->fetch_assoc()) {
-        echo '<label><input type="checkbox" name="datos_seleccionados[]" value="' . $fila['id'] . '">' . $fila['name'] . '</label><br>';
-    }
-} else {
-    echo 'No se encontraron datos.';
-}
-
-?>
-</div>
+                                        ?>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                     </div>
                     </form>
 
               </div>
@@ -214,6 +223,12 @@ if ($resultado->num_rows > 0) {
         <script src="views/theme/js/libs/datatables.min.js"></script>
         <script src="modulos/examenes/views/theme/js/classes/Add_test.js"></script>
         <script src="modulos/examenes/views/theme/js/test.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script>
+            $(function(){
+                $('#cargos_select').select2();
+            }); 
+        </script>
     
     </body>
 

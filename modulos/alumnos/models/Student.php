@@ -245,6 +245,7 @@ class Student extends Server
         $headTable = "<thead><tr>
                               <th>Usuario</th>
                               <th>Nombre</th>
+                              <th>Cargo</th>
                               <th class='text-center'>Estado</th>
                               <th class='text-center'>Password</th>
                               <th></th>
@@ -272,6 +273,11 @@ class Student extends Server
                         <td>
                             <span class='student-dataTd$datos[id]'>$datos[apellido] $datos[nombre]</span>
                         </td>
+
+                        <td>
+                            <span class='student-dataTd$datos[id]'>$datos[cargo] </span>
+                        </td>
+
                         <td class='text-center'>
                             <button class='update-statusBtn $status' id='update-statusBtn$datos[id]' value='$datos[id]||$datos[estado]' title='Click para actualizar estado'>
                                     
@@ -366,7 +372,7 @@ class Student extends Server
                     $addOne = $this->crud(
                         "insert into alumnos (usuario, nombre, cargo, apellido, password, tipoUsuario, estado, fechaDeRegistro) values ('$usuario','$nombre','$cargos','$apellido', '$password', '$userType','$estado', '$date')",
                         "Error al registrar alumno",
-                        $this->success_msg("El alumn@ &nbsp <strong>$nombre  $apellidos&nbsp</strong> se registro correctamente en la base de datos"),
+                        $this->success_msg("El alumn@ &nbsp <strong>$nombre  $apellidos&nbsp</strong> se registro correctamente"),
                         $this->danger_msg("Error al registrar alumno")
                     );
 
@@ -422,24 +428,20 @@ class Student extends Server
                     <div class="form-body row">
                         <div class="col-md-6">
                             <div class="form-group row">
-                                <label class="col-sm-2">Usuario:</label>
+                                <label class="col-sm-2">Cedula:</label>
                                 <div class="col-sm-10"> 
                                     <input type="text" name="usuario" id="usuario" class="form-control datos" tabindex="1" value="' . $this->usuario . '">
                                 </div>
                             </div>
-            
+                            
                             <div class="form-group row">
-                                <label class="col-sm-2">Cargo:</label>
-                                <select class="col-sm-10" name="cargos" id="cargos">
-                                    <option value="" selected disabled>SELECCIONA TU CARGO</option>';
-
-        foreach ($cargos as $key => $cargo) {
-            $html .= '<option value="' . $cargo['id'] . '">' . $cargo['name'] . '</option>';
-        }
-
-        $html .= '</select>
-                </div>
-
+                                <label class="col-sm-2">Nombres:</label>
+                                <div class="col-sm-10"> 
+                                    <input type="text" name="nombre" id="nombre" class="form-control datos" tabindex="2" value="' . $this->nombre . '">
+                                </div>
+                            </div>
+            
+                           
                 <div class="form-group row">
                     <label class="col-sm-2">Apellidos:</label>
                     <div class="col-sm-10"> 
@@ -449,13 +451,20 @@ class Student extends Server
             </div>
 
             <div class="col-md-6">
-                <div class="form-group row">
-                    <label class="col-sm-2">Nombre:</label>
-                    <div class="col-sm-10"> 
-                        <input type="text" name="nombre" id="nombre" class="form-control datos" tabindex="2" value="' . $this->nombre . '">
-                    </div>
-                </div>
+            <div class="form-group row">
+                <label class="col-sm-2">Cargo:</label>
+                <select class="col-sm-10" name="cargos" id="cargos">
+                    <option value="" selected disabled>SELECCIONA TU CARGO</option>';
 
+foreach ($cargos as $key => $cargo) {
+$html .= '<option value="' . $cargo['id'] . '">' . $cargo['name'] . '</option>';
+}
+
+$html .= '</select>
+</div>
+
+
+           
                 <div class="form-group row">  
                     <label class="col-sm-2">Contraseña:</label>
                     <div class="col-sm-10"> 
@@ -605,13 +614,13 @@ class Student extends Server
                                 <div class="form-body">
 
                                     <div class="form-group row">
-                                        <label class="label-data col-sm-2">Usuario:</label>
+                                        <label class="label-data col-sm-2">Cedula:</label>
                                         <div class="col-sm-10">
                                             <input type="text" name="user" id="user" class="dataSet form-control" tabindex="1" value="' . $user . '">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="label-data col-sm-2">Nombre:</label>
+                                        <label class="label-data col-sm-2">Nombres:</label>
                                         <div class="col-sm-10">
                                             <input type="text" name="name" id="name" class="dataSet form-control" tabindex="2" value="' . $name . '">
                                         </div>
@@ -622,6 +631,12 @@ class Student extends Server
                                             <input type="text" name="apellidos" id="apellidos" class="dataSet form-control" tabindex="3" value="' . $apellidos . '">
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                    <label class="label-data col-sm-2">Cargo:</label>
+                                    <div class="col-sm-10">
+                                        <input  type="checkbox"  name="cargos" id="cargo" class="dataSet form-control" tabindex="5" value="' . $apellidos . '">
+                                        </div>
+                                </div>
                                    
                                 </div>
 

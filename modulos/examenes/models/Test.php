@@ -894,11 +894,29 @@ class Test extends Server{
 
     }
 
+    // Asignar cargos a la configuracion de los examenes
+    public function set_cargos_test_config($cargos_select , $id_config_examen ) {
+      
+      // Preguntamos si el ID de la configuracion del exmen esta vacio
+       
+        foreach ($cargos_select as $key => $value) {
+          $config = $this->crud("insert into cc_e (id_c, id_ce) values ('$value','$id_config_examen')", 
+                                "Error al registrar la relacion config_cargos",
+                                "Config_cargos correctamente",
+                                "Error al registrar Config_cargos");
+        }
+      
+
+      return "success";
+      
+    }
+
     public function set_test_config($hourAp = "",
                                     $dateAp = "",
                                     $hourEx = "",
                                     $dateEx = "",
-                                    $promMin = "",  
+                                    $promMin = "",
+                                    $arrayCargos ="",  
                                     $idTest = ""){
 
         //configurar examen
@@ -915,6 +933,7 @@ class Test extends Server{
                     $hourEx = $this -> data_cleaner($hourEx);
                     $dateEx = $this -> data_cleaner($dateEx);
                     $promMin = $this -> data_cleaner($promMin);
+                    $arrayCargos = $this -> data_Cleaner($arrayCargos);
                     $config = false;
                     
                     $search = $this -> search("select configEx_id from configuracion_de_examen where configEx_examen='$idTest'", 

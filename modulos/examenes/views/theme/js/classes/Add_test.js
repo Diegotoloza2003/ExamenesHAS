@@ -420,6 +420,7 @@ class Add_test{
 							test.dataConfig[2].value = data.data.hourEx;
 							test.dataConfig[3].value = data.data.dateEx;
 							test.dataConfig[4].value = data.data.promMin;
+							test.dataConfig[5].value = data.data.cargos_select;
 				
 						}else{
 						
@@ -463,6 +464,7 @@ class Add_test{
 								hourEx:test.dataConfig[2].value,
 								dateEx:test.dataConfig[3].value,
 								promMin:test.dataConfig[4].value,
+								cargos_select:test.dataConfig[5].value,
 								idTest:idTest
 							   };
 	
