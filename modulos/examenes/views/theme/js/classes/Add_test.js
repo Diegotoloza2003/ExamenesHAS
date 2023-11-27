@@ -413,6 +413,7 @@ class Add_test{
 						
 						if(data.status == "done"){
 
+							console.log(data);
 							console.log(data.notice);
 
 							test.dataConfig[0].value = data.data.hourAp;
@@ -457,7 +458,7 @@ class Add_test{
 								
 				let idTest = test.idTest;
 
-				let dataJson = {
+				/* let dataJson = {
 								request:"updateTestConfig",
 								hourAp:test.dataConfig[0].value,
 							    dateAp:test.dataConfig[1].value,
@@ -466,7 +467,22 @@ class Add_test{
 								promMin:test.dataConfig[4].value,
 								cargos_select:test.dataConfig[5].value,
 								idTest:idTest
-							   };
+							   }; */
+				let formData = $("form").serializeArray();
+
+				// Agregar datos adicionales al formulario
+				let additionalData = {
+					request: "updateTestConfig",
+					hourAp:test.dataConfig[0].value,
+					dateAp:test.dataConfig[1].value,
+					hourEx:test.dataConfig[2].value,
+					dateEx:test.dataConfig[3].value,
+					promMin:test.dataConfig[4].value,
+					idTest:idTest,
+				};
+				
+				// Combina los datos del formulario y los datos adicionales
+				let dataJson = Object.assign({}, ...formData.map(obj => ({[obj.name]: obj.value})), additionalData);
 	
 				$.ajax({
 				
