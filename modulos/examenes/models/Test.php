@@ -715,12 +715,12 @@ class Test extends Server
     if ($search_relation['status'] == "done") {
       // SQL con relacion
       $sql = "SELECT cde.*, c.* FROM configuracion_de_examen cde 
-        INNER JOIN cc_e cc_relation ON cde.configEx_examen = cc_relation.id_ce 
-        INNER JOIN cargos c ON c.id = cc_relation.id_c 
-        WHERE cde.configEx_examen = '$idTest'";
+                INNER JOIN cc_e cc_relation ON cde.configEx_examen = cc_relation.id_ce 
+                INNER JOIN cargos c ON c.id = cc_relation.id_c 
+              WHERE cde.configEx_examen = '$idTest'";
     } else {
       $sql = "SELECT * FROM configuracion_de_examen cde
-        WHERE cde.configEx_examen = '$idTest'";
+              WHERE cde.configEx_examen = '$idTest'";
     }
 
     $search = $this->search(
