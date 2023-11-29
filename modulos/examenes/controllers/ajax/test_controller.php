@@ -138,6 +138,7 @@
 					$promMin = $_POST["promMin"];
 					$idTest = $_POST["idTest"];
 
+
 					$arrayCargos = $_POST["cargos_select"];
 
 					$update = $test -> set_test_config($hourAp,
