@@ -176,13 +176,12 @@
                                 <div class="form-group">
                                     <label for="cargos_select" class="col-form-label">Asignar a:</label>
                                     <br>
-                                    <select class="form-control data-config" id="cargos_select" style="width: 100%;" name="cargos_select[]" multiple="multiple"  tabindex="6">
-                                        <option value="">Seleccione los cargos</option>
+                                    <select class="form-control data-config" id="cargos_select" style="width: 100%;" name="cargos_select[]" multiple="multiple">
                                         <?php
                                             // obtener_datos.php
                                             // Conectarse a la base de datos y ejecutar una consulta para obtener datos
 
-                                            $conexion = new mysqli('mysql5026.site4now.net', 'aa194e_examen', 'Holaquehace123', 'db_aa194e_examen');
+                                            $conexion = new mysqli('mysql5044.site4now.net', 'aa194e_examenn', 'Holaquehace1', 'db_aa194e_examenn');
 
                                             if ($conexion->connect_error) {
                                                 die('Error de conexión a la base de datos: ' . $conexion->connect_error);

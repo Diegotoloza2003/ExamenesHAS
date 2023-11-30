@@ -474,16 +474,29 @@ class Add_test{
 				// Agregar datos adicionales al formulario
 				let additionalData = {
 					request: "updateTestConfig",
-					hourAp:test.dataConfig[0].value,
-					dateAp:test.dataConfig[1].value,
-					hourEx:test.dataConfig[2].value,
-					dateEx:test.dataConfig[3].value,
-					promMin:test.dataConfig[4].value,
-					idTest:idTest,
+					hourAp: test.dataConfig[0].value,
+					dateAp: test.dataConfig[1].value,
+					hourEx: test.dataConfig[2].value,
+					dateEx: test.dataConfig[3].value,
+					promMin: test.dataConfig[4].value,
+					idTest: idTest,
 				};
 				
+				// Buscar el campo select y obtener todos los valores seleccionados
+				let selectedCargos = $("select[name='cargos_select[]']").val();
+				
+				// Agregar los datos seleccionados al objeto additionalData
+				additionalData.cargos_select = selectedCargos;
+				
 				// Combina los datos del formulario y los datos adicionales
-				let dataJson = Object.assign({}, ...formData.map(obj => ({[obj.name]: obj.value})), additionalData);
+				let dataJson = {};
+				
+				formData.forEach(obj => {
+					dataJson[obj.name] = obj.value;
+				});
+				
+				// Agregar los datos adicionales
+				Object.assign(dataJson, additionalData);
 	
 				$.ajax({
 				

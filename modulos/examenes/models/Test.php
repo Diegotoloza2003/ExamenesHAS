@@ -715,12 +715,12 @@ class Test extends Server
     if ($search_relation['status'] == "done") {
       // SQL con relacion
       $sql = "SELECT cde.*, c.* FROM configuracion_de_examen cde 
-        INNER JOIN cc_e cc_relation ON cde.configEx_examen = cc_relation.id_ce 
-        INNER JOIN cargos c ON c.id = cc_relation.id_c 
-        WHERE cde.configEx_examen = '$idTest'";
+                INNER JOIN cc_e cc_relation ON cde.configEx_examen = cc_relation.id_ce 
+                INNER JOIN cargos c ON c.id = cc_relation.id_c 
+              WHERE cde.configEx_examen = '$idTest'";
     } else {
       $sql = "SELECT * FROM configuracion_de_examen cde
-        WHERE cde.configEx_examen = '$idTest'";
+              WHERE cde.configEx_examen = '$idTest'";
     }
 
     $search = $this->search(
@@ -943,14 +943,15 @@ class Test extends Server
   // Asignar cargos a la configuracion de los examenes
   public function set_cargos_test_config($cargos_select, $id_config_examen)
   {
-
-    foreach ($cargos_select as $value) {
-      $config = $this->crud(
-        "insert into cc_e (id_c, id_ce) values ('$value','$id_config_examen')",
-        "Error al registrar la relacion config_cargos",
-        "Config_cargos correctamente",
-        "Error al registrar Config_cargos"
-      );
+    foreach ($cargos_select as $key => $value) {
+      if ($key != (count($cargos_select) - 1)) {
+        $config = $this->crud(
+          "insert into cc_e (id_c, id_ce) values ('$value','$id_config_examen')",
+          "Error al registrar la relacion config_cargos",
+          "Config_cargos correctamente",
+          "Error al registrar Config_cargos"
+        );
+      }      
     }
 
     return $config;
