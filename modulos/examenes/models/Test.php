@@ -1953,9 +1953,6 @@ class Test extends Server
 
     $search = $this->search($sql);
 
-
-
-
     $ulStar = "<table class='table test-list'> 
                      <tr>
                         <th>Examen</th>
@@ -1970,6 +1967,7 @@ class Test extends Server
     if ($search["status"] == "done") {
 
       $time = "00:00";
+
 
       while ($row = mysqli_fetch_assoc($search["data"])) {
 
