@@ -454,20 +454,21 @@ class Add_test{
 
 		test.saveConfigBtn.off("click");
 
+		/* let dataJson = {
+		request:"updateTestConfig",
+		hourAp:test.dataConfig[0].value,
+		dateAp:test.dataConfig[1].value,
+		hourEx:test.dataConfig[2].value,
+		dateEx:test.dataConfig[3].value,
+		promMin:test.dataConfig[4].value,
+		cargos_select:test.dataConfig[5].value,
+		idTest:idTest
+		}; */
+
 		test.saveConfigBtn.click(function(e){
 								
 				let idTest = test.idTest;
 
-				/* let dataJson = {
-								request:"updateTestConfig",
-								hourAp:test.dataConfig[0].value,
-							    dateAp:test.dataConfig[1].value,
-								hourEx:test.dataConfig[2].value,
-								dateEx:test.dataConfig[3].value,
-								promMin:test.dataConfig[4].value,
-								cargos_select:test.dataConfig[5].value,
-								idTest:idTest
-							   }; */
 				let formData = $("form").serializeArray();
 
 				// Agregar datos adicionales al formulario

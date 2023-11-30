@@ -1940,16 +1940,18 @@ class Test extends Server
       $cargo = mysqli_fetch_assoc($cargo_search["data"]);
       // La informacion del alumno
       $id_cargo = $cargo["cargo"];
-      $sql = "select * from examenes e inner join configuracion_de_examen ce on e.exam_id = ce.configEx_examen WHERE ce.configEx_cargo = $id_cargo";
+      // SQL viejo
+      // $sql = "select * from examenes e inner join configuracion_de_examen ce on e.exam_id = ce.configEx_examen WHERE ce.configEx_cargo = $id_cargo";
+      $sql = "SELECT * FROM examenes e 
+                INNER JOIN configuracion_de_examen ce ON e.exam_id = ce.configEx_examen 
+                INNER JOIN cc_e relations ON ce.configEx_examen = relations.id_ce 
+              WHERE relations.id_c = $id_cargo";
     } else {
       // sino, traiga todos los examenes
       $search = $this->search("select * from examenes inner join configuracion_de_examen on configEx_examen=exam_id");
     }
 
     $search = $this->search($sql);
-
-
-
 
     $ulStar = "<table class='table test-list'> 
                      <tr>
@@ -1965,6 +1967,7 @@ class Test extends Server
     if ($search["status"] == "done") {
 
       $time = "00:00";
+
 
       while ($row = mysqli_fetch_assoc($search["data"])) {
 
