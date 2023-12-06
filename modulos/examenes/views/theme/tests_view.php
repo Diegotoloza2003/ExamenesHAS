@@ -177,6 +177,7 @@
                                     <label for="cargos_select" class="col-form-label">Asignar a:</label>
                                     <br>
                                     <select class="form-control data-config" id="cargos_select" style="width: 100%;" name="cargos_select[]" multiple="multiple">
+                                        <option value="0">Seleccionar todo</option>
                                         <?php
                                             // obtener_datos.php
                                             // Conectarse a la base de datos y ejecutar una consulta para obtener datos
