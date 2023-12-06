@@ -943,16 +943,30 @@ class Test extends Server
   // Asignar cargos a la configuracion de los examenes
   public function set_cargos_test_config($cargos_select, $id_config_examen)
   {
-    foreach ($cargos_select as $key => $value) {
-      if ($key != (count($cargos_select) - 1)) {
-        $config = $this->crud(
-          "insert into cc_e (id_c, id_ce) values ('$value','$id_config_examen')",
-          "Error al registrar la relacion config_cargos",
-          "Config_cargos correctamente",
-          "Error al registrar Config_cargos"
-        );
-      }      
+    // Si selecciono todos los cargos
+    if ($cargos_select[0] == 0) {
+
+      $config = $this->crud(
+        "INSERT INTO cc_e (id_c, id_ce) SELECT id AS id_c, '$id_config_examen' FROM cargos",
+        "Error al insertar datos",
+        "Se agregó correctamente",
+        "Error al insertar datoss"
+      );
+
     }
+    // Siga insertando uno por uno
+    else {
+      foreach ($cargos_select as $key => $value) {      
+        if ($key != (count($cargos_select) - 1)) {
+          $config = $this->crud(
+            "insert into cc_e (id_c, id_ce) values ('$value','$id_config_examen')",
+            "Error al registrar la relacion config_cargos",
+            "Config_cargos correctamente",
+            "Error al registrar Config_cargos"
+          );
+        }      
+      }
+    }    
 
     return $config;
   }
