@@ -1819,13 +1819,9 @@ class Test extends Server
                                                           Incorrectas: $row[er_incorrectas]
                                                     </td>
                                                   </tr>
-                                                  <tr>
-                                                    <td class='test-listItem'>
-                                                          Promedio: $row[er_promedio]
-                                                    </td>
                                                   </tr><tr>
                                                     <td class='test-listItem'>
-                                                          Status: $status
+                                                          Estado: $status
                                                     </td>
                                                   </tr>" . $tableEnd;
       }

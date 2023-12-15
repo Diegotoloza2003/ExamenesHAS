@@ -57,7 +57,7 @@
      
                                     <form action="" method="post" name="change-passwordForm" id="change-passwordForm" class="change-passwordForm pull-right">
                                     
-                                        <h2 class="title-form">Editar Password</h2>
+                                        <h2 class="title-form">Editar Contraseña</h2>
 
                                         <div class="change-passMsg" id="change-passMsg"></div>
                                     
@@ -65,13 +65,13 @@
 
                                                 
                                                 <div class="form-group row">
-                                                    <label class="label-pass col-sm-3">Password:</label>
+                                                    <label class="label-pass col-sm-3">Contraseña:</label>
                                                     <div class=" col-sm-9">    
                                                         <input type="password" name="password" id="password" class="data-password form-control" tabindex="4" value="">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="label-pass col-sm-3">Confirmar:</label>
+                                                    <label class="label-pass col-sm-3">Confirmar contraseña:</label>
                                                     <div class=" col-sm-9">    
                                                         <input type="password" name="confirmPassword" id="confirm-pass" class="data-password form-control" tabindex="5" value="">
                                                     </div>

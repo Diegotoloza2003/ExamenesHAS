@@ -110,10 +110,11 @@ class Evaluation extends Server{
         $tableEnd = "</tbody></table>";
         
         $headTable="<thead><tr>
+                        <th>Cedula</th>
                         <th>Alumno</th>
                         <th>Correctas</th>
                         <th>Incorrectas</th>
-                        <th>Promedio</th>
+                        <th>Estado</th>
                         <th>Borrar</th>
                     </tr></thead><tbody>";
 
@@ -128,9 +129,20 @@ class Evaluation extends Server{
         if($search["status"] == "done"){
 
             while($datos = mysqli_fetch_assoc($search["data"])){
-                                    
+                
+                $status = ""; // Inicializa $status en cada iteración del bucle
+
+                // Lógica para determinar el status
+                if ($datos["er_promedio"] >= $datos["configEx_promMin"]) {
+                    $status = "<div class='bg-colorGreen status'>Aprobado</div>";
+                } else {
+                    $status = "<div class='bg-colorRed status'>No aprobado</div>";
+                }           
                 
                 $tableBody = $tableBody."<tr>
+                        <td>
+                            $datos[usuario] 
+                        </td>
                         <td class='td-name' id='td-name$datos[er_alumno]'>
                             $datos[apellido] $datos[nombre]
                         </td>
@@ -141,7 +153,7 @@ class Evaluation extends Server{
                             $datos[er_incorrectas]
                         </td>
                         <td>
-                            $datos[er_promedio]
+                            $status
                         </td>
                         <td>
                             <button class='btn del-studentBtn fas fa-trash-alt' id='del-studentBtn$datos[id]' value='$datos[er_examen]||$datos[er_alumno]' title='Click para borrar las notas del alumno y permitir que haga el examen nuevamente'>

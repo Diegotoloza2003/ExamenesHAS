@@ -616,7 +616,7 @@ $html .= '</select>
                                     <div class="form-group row">
                                         <label class="label-data col-sm-2">Cedula:</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="user" id="user" class="dataSet form-control" tabindex="1" value="' . $user . '">
+                                            <input type="text" name="user" id="user" class="dataSet form-control" tabindex="1" disabled value="' . $user . '">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -631,12 +631,6 @@ $html .= '</select>
                                             <input type="text" name="apellidos" id="apellidos" class="dataSet form-control" tabindex="3" value="' . $apellidos . '">
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                    <label class="label-data col-sm-2">Cargo:</label>
-                                    <div class="col-sm-10">
-                                        <input  type="checkbox"  name="cargos" id="cargo" class="dataSet form-control" tabindex="5" value="' . $apellidos . '">
-                                        </div>
-                                </div>
                                    
                                 </div>
 
